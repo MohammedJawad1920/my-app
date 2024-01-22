@@ -2,7 +2,7 @@ import StudentDetailsContainer from "@/components/StudentDetailsContainer";
 import axios from "axios";
 
 const fetchStudentData = async () => {
-  const res = await axios.get(`${process.env.BASE_URL}/api/students/get`);
+  const res = await axios.get(`/api/students/get`);
   const students = await res.data.students;
   return students;
 };

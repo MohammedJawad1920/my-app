@@ -2,7 +2,7 @@ import UserDetailsContainer from "@/components/UserDetailsContainer";
 import axios from "axios";
 
 const fetchUserData = async () => {
-  const res = await axios.get(`${process.env.BASE_URL}/api/users`);
+  const res = await axios.get(`/api/users`);
   const users = await res.data.users;
   const filteredUsers = users.filter(
     (row) => row.emailVerified === true && row.accessLocation === "Library"
