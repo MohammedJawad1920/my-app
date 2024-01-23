@@ -29,16 +29,19 @@ const Login = () => {
         Cookies.set("libraryToken", data?.tokens?.libraryToken, {
           expires: 15,
         });
+        router.push("/sdc-dashboard");
       }
       if (data?.tokens?.festToken) {
         Cookies.set("festToken", data?.tokens?.festToken, {
           expires: 15,
         });
+        router.push("/meelad-fest");
       }
       if (data?.tokens?.staffToken) {
         Cookies.set("staffToken", data?.tokens?.staffToken, {
           expires: 15,
         });
+        router.push("/attendance");
       }
     } catch (error) {
       console.error("Error:", error);
