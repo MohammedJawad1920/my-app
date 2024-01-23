@@ -1,4 +1,3 @@
-// middleware.js
 import { jwtVerify } from "jose";
 import { NextResponse } from "next/server";
 
@@ -31,8 +30,15 @@ export async function middleware(request) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
+  let token;
+  if (isSdcDashBoard) {
+    token = libraryToken.value;
+  } else {
+    token = festToken.value;
+  }
+
   const { payload } = await jwtVerify(
-    isSdcDashBoard ? libraryToken?.value : festToken?.value,
+    token,
     new TextEncoder().encode(process.env.JWT_SECRET_KEY)
   );
 
