@@ -1,9 +1,12 @@
 import BookDetailsContainer from "@/components/BookDetailsContainer";
-import axios from "axios";
+import fetch from "node-fetch";
 
 const fetchBookData = async () => {
-  const res = await axios.get(`${process.env.BASE_URL}/api/books/get`);
-  const books = await res.data.books;
+  const res = await fetch(`${process.env.BASE_URL}/api/books/get`, {
+    cache: "no-store",
+  });
+  const data = await res.ison();
+  const books = await data.books;
   return books;
 };
 const BookDetails = async () => {

@@ -33,6 +33,7 @@ const UserDetails = ({ data }) => {
   const [selectedRow, setSelectedRow] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
   const [profile, setProfile] = useState([]);
+  const [userData, setUserData] = useState(data);
 
   const router = useRouter(null);
 
@@ -50,6 +51,19 @@ const UserDetails = ({ data }) => {
     };
     fetchProfile();
   }, []);
+
+  const fetchUserData = async () => {
+    try {
+      const res = await fetch(`/api/users`, {
+        cache: "no-store",
+      });
+      const data = await res.json();
+      const users = data.users;
+      setUserData(users);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   const handleDelete = async (_id) => {
     const token = Cookies.get("sdcToken");
@@ -209,21 +223,21 @@ const UserDetails = ({ data }) => {
           }}
         >
           <DataGrid
-            rows={data}
+            rows={userData}
             columns={columns}
             getRowId={(row) => row._id}
             onRowClick={handleRowClick}
             className="hidden lg:flex"
           />
           <DataGrid
-            rows={data}
+            rows={userData}
             columns={mdColumns}
             getRowId={(row) => row._id}
             onRowClick={handleRowClick}
             className="hidden md:flex lg:hidden"
           />
           <DataGrid
-            rows={data}
+            rows={userData}
             columns={smColumns}
             getRowId={(row) => row._id}
             onRowClick={handleRowClick}

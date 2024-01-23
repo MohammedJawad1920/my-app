@@ -1,29 +1,23 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import UserDetailsContainer from "@/components/UserDetailsContainer";
-import axios from "axios";
+import fetch from "node-fetch";
 
-const UserDetails = () => {
-  const [filteredUsers, setFilteredUsers] = useState([]);
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const res = await axios.get(`/api/users`);
-        const users = res.data.users;
-        const filteredUsers = users.filter(
-          (row) =>
-            row.emailVerified === true && row.accessLocation === "Library"
-        );
-        setFilteredUsers(filteredUsers);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-
-    fetchUserData();
-  }, []); // The empty dependency array ensures that this effect runs only once on mount
+const fetchUserData = async () => {
+  try {
+    const res = await fetch(`${process.env.BASE_URL}/api/users`, {
+      cache: "no-store",
+    });
+    const data = await res.json();
+    const users = data.users;
+    return users;
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+const UserDetails = async () => {
+  const data = await fetchUserData();
+  const filteredUsers = data?.filter(
+    (row) => row.emailVerified === true && row.accessLocation === "Library"
+  );
 
   return <UserDetailsContainer data={filteredUsers} />;
 };

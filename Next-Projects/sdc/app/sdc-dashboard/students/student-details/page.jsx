@@ -1,9 +1,12 @@
 import StudentDetailsContainer from "@/components/StudentDetailsContainer";
-import axios from "axios";
+import fetch from "node-fetch";
 
 const fetchStudentData = async () => {
-  const res = await axios.get(`${process.env.BASE_URL}/api/students/get`);
-  const students = await res.data.students;
+  const res = await fetch(`${process.env.BASE_URL}/api/students/get`, {
+    cache: "no-store",
+  });
+  const data = await res.json();
+  const students = data.students;
   return students;
 };
 const StudentDetails = async () => {

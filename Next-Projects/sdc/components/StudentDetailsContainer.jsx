@@ -28,8 +28,9 @@ const StudentDetails = ({ data }) => {
   const [studentData, setStudentData] = useState(data);
 
   const fetchStudentData = async () => {
-    const res = await axios.get(`/api/students/get`);
-    const students = await res.data.students;
+    const res = await fetch(`/api/students/get`, { cache: "no-store" });
+    const data = await res.json();
+    const students = data.students;
     setStudentData(students);
   };
 

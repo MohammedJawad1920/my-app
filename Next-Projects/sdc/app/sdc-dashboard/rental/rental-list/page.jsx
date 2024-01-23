@@ -1,9 +1,12 @@
 import RentalListContainer from "@/components/RentalListContainer";
-import axios from "axios";
+import fetch from "node-fetch";
 
 const fetchRentalData = async () => {
-  const res = await axios.get(`${process.env.BASE_URL}/api/rental/get`);
-  const rentals = await res.data.rentals;
+  const res = await fetch(`${process.env.BASE_URL}/api/rental/get`, {
+    cache: "no-store",
+  });
+  const data = await res.json();
+  const rentals = await data.rentals;
   return rentals;
 };
 const rentalList = async () => {
