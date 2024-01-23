@@ -33,7 +33,7 @@ export async function middleware(request) {
 
   const { payload } = await jwtVerify(
     isSdcDashBoard ? libraryToken.value : festToken.value,
-    new TextEncoder().encode(process.env.JWT_SECRET_KEY)
+    process.env.JWT_SECRET_KEY
   );
 
   const administrator = payload.role === "Administrator";
