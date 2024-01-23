@@ -22,6 +22,10 @@ const fetchData = async () => {
   }
 };
 const Dashboard = async () => {
+  const data = await fetchData();
+  const booksData = data[0]?.books || [];
+  const studentsData = data[1]?.students || [];
+  const rentalsData = data[2]?.rentals || [];
   return (
     <DashboardContainer
       booksData={booksData}
