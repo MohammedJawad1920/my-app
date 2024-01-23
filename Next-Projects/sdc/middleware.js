@@ -1,5 +1,6 @@
 import { jwtVerify } from "jose";
 import { NextResponse } from "next/server";
+import jwt from "jsonwebtoken"; // Import the jsonwebtoken package
 
 export async function middleware(request) {
   try {
@@ -77,7 +78,7 @@ export async function middleware(request) {
   } catch (error) {
     console.error("Error in middleware:", error);
 
-    if (error instanceof jwt.errors.JWTError) {
+    if (error instanceof jwt.JsonWebTokenError) {
       // Handle JWT errors, such as invalid or expired tokens
       return NextResponse.redirect(new URL("/login", request.url));
     } else {
