@@ -3,7 +3,9 @@ import axios from "axios";
 const fetchData = async () => {
   try {
     const requests = await Promise.all([
-      axios.get(`${process.env.BASE_URL}/api/books/get`),
+      axios.get(`${process.env.BASE_URL}/api/books/get`, {
+        next: { revalidate: 5 },
+      }),
       axios.get(`${process.env.BASE_URL}/api/students/get`),
       axios.get(`${process.env.BASE_URL}/api/rental/get`),
     ]);
@@ -16,10 +18,6 @@ const fetchData = async () => {
   }
 };
 const Dashboard = async () => {
-  const data = await fetchData();
-  const booksData = data[0]?.books || [];
-  const studentsData = data[1]?.students || [];
-  const rentalsData = data[2]?.rentals || [];
   return (
     <DashboardContainer
       booksData={booksData}
