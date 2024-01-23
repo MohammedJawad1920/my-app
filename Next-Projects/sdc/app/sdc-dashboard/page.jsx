@@ -3,15 +3,11 @@ import axios from "axios";
 const fetchData = async () => {
   try {
     const requests = await Promise.all([
-      fetch(`${process.env.BASE_URL}/api/books/get`, {
+      axios.get(`${process.env.BASE_URL}/api/books/get`, {
         next: { revalidate: 5 },
       }),
-      fetch(`${process.env.BASE_URL}/api/students/get`, {
-        next: { revalidate: 5 },
-      }),
-      fetch(`${process.env.BASE_URL}/api/rental/get`, {
-        next: { revalidate: 5 },
-      }),
+      axios.get(`${process.env.BASE_URL}/api/students/get`),
+      axios.get(`${process.env.BASE_URL}/api/rental/get`),
     ]);
 
     const responses = await Promise.all(requests);
