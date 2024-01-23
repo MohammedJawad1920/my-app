@@ -37,32 +37,40 @@ export async function middleware(request) {
     token = festToken.value;
   }
 
-  const { payload } = await jwtVerify(
-    token,
-    new TextEncoder().encode(process.env.JWT_SECRET_KEY)
-  );
-
-  const administrator = payload.role === "Administrator";
-  const subscriber = payload.role === "Subscriber";
-  const library = payload.accessLocation === "Library";
-  const meeladFest = payload.accessLocation === "Meelad Fest";
-  const attendance = payload.accessLocation === "Attendance";
-
-  if ((library && !isSdcDashBoard) || (meeladFest && !isMeeladFest)) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
-
-  if (
-    (userManagement && !administrator) ||
-    ((books || userManagement || rental || students) && subscriber)
-  ) {
-    return NextResponse.redirect(new URL("/404", request.url));
-  }
-
   try {
+    const { payload } = await jwtVerify(
+      token,
+      new TextEncoder().encode(process.env.JWT_SECRET_KEY)
+    );
+
+    const administrator = payload.role === "Administrator";
+    const subscriber = payload.role === "Subscriber";
+    const library = payload.accessLocation === "Library";
+    const meeladFest = payload.accessLocation === "Meelad Fest";
+    const attendance = payload.accessLocation === "Attendance";
+
+    if ((library && !isSdcDashBoard) || (meeladFest && !isMeeladFest)) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+
+    if (
+      (userManagement && !administrator) ||
+      ((books || userManagement || rental || students) && subscriber)
+    ) {
+      return NextResponse.redirect(new URL("/404", request.url));
+    }
+
     return NextResponse.next();
   } catch (error) {
-    return NextResponse.redirect(new URL("/login", request.url));
+    if (error instanceof jose.JWTPayloadError) {
+      // Handle JWT payload errors, such as invalid or expired tokens
+      return NextResponse.redirect(new URL("/login", request.url));
+    } else {
+      // Handle other errors, such as network issues or missing env variables
+      return NextResponse.redirect(new URL("/500", request.url), {
+        status: 500,
+      });
+    }
   }
 }
 
