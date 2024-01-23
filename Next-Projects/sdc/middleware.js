@@ -5,8 +5,8 @@ export async function middleware(request) {
   const libraryToken = request.cookies.get("libraryToken");
   const festToken = request.cookies.get("festToken");
 
-  const isSdcDashBoard = request.url.endsWith("/sdc-dashboard");
-  const isMeeladFest = request.url.endsWith("/meelad-fest");
+  const isSdcDashBoard = request.url.includes("/sdc-dashboard");
+  const isMeeladFest = request.url.includes("/meelad-fest");
 
   if ((!libraryToken && isSdcDashBoard) || (!festToken && isMeeladFest)) {
     return NextResponse.redirect(new URL("/login", request.url));

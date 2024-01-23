@@ -229,11 +229,19 @@ const Dashboard = ({ booksData, studentsData, rentalsData }) => {
             p="15px"
           >
             <Box>
-              <Typography color={colors.grey[100]}>
+              <Typography
+                color={colors.grey[100]}
+                className="text-xs"
+              >
                 {item[1]?.studentName || "No data"}
               </Typography>
             </Box>
-            <Box color={colors.grey[100]}>{item[0]}</Box>
+            <Box
+              color={colors.grey[100]}
+              className="text-xs"
+            >
+              {item[0]}
+            </Box>
           </Box>
         ))}
       </>
