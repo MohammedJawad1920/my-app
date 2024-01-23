@@ -34,7 +34,7 @@ export async function POST(request) {
       return NextResponse.json({ msg: "Invalid Password" }, { status: 401 });
     }
 
-    const secretKey = process.env.JWT_SECRET_KEY;
+    const secretKey = new TextEncoder().encode(process.env.JWT_SECRET_KEY);
     const token = jwt.sign(
       {
         userId: user?._id,
