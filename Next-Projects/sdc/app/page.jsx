@@ -1,5 +1,5 @@
 import Navbar from "@/components/Navbar";
-import React from "react";
+import "../app/styles/custom.css";
 import {
   AccessTime,
   ArrowForward,

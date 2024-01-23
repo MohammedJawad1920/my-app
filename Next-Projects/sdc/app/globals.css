@@ -162,8 +162,7 @@ img,
 span,
 data,
 input,
-button,
-ion-icon {
+button {
   display: block;
 }
 
@@ -195,15 +194,9 @@ address {
   font-style: normal;
 }
 
-html {
-  font-family: var(--ff-poppins);
-  font-size: 10px;
-  scroll-behavior: smooth;
-}
-
 body {
-  background-color: var(--white);
   color: var(--gray-web);
+  font-family: var(--ff-poppins);
   font-size: 1.6rem;
   line-height: 1.75;
 }
