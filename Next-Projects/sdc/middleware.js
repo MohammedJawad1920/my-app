@@ -1,4 +1,3 @@
-// middleware.js
 import { jwtVerify } from "jose";
 import { NextResponse } from "next/server";
 
@@ -31,29 +30,32 @@ export async function middleware(request) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  const { payload } = await jwtVerify(
-    isSdcDashBoard ? libraryToken.value : festToken.value,
-    process.env.JWT_SECRET_KEY
-  );
-
-  const administrator = payload.role === "Administrator";
-  const subscriber = payload.role === "Subscriber";
-  const library = payload.accessLocation === "Library";
-  const meeladFest = payload.accessLocation === "Meelad Fest";
-  const attendance = payload.accessLocation === "Attendance";
-
-  if ((library && !isSdcDashBoard) || (meeladFest && !isMeeladFest)) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
-
-  if (
-    (userManagement && !administrator) ||
-    ((books || userManagement || rental || students) && subscriber)
-  ) {
-    return NextResponse.redirect(new URL("/404", request.url));
-  }
+  const key = new TextEncoder().encode(process.env.JWT_SECRET_KEY);
 
   try {
+    const { payload } = await jwtVerify(
+      isSdcDashBoard ? libraryToken.value : festToken.value,
+      key,
+      { algorithms: ["HS256"] }
+    );
+
+    const administrator = payload.role === "Administrator";
+    const subscriber = payload.role === "Subscriber";
+    const library = payload.accessLocation === "Library";
+    const meeladFest = payload.accessLocation === "Meelad Fest";
+    const attendance = payload.accessLocation === "Attendance";
+
+    if ((library && !isSdcDashBoard) || (meeladFest && !isMeeladFest)) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+
+    if (
+      (userManagement && !administrator) ||
+      ((books || userManagement || rental || students) && subscriber)
+    ) {
+      return NextResponse.redirect(new URL("/404", request.url));
+    }
+
     return NextResponse.next();
   } catch (error) {
     return NextResponse.redirect(new URL("/login", request.url));
@@ -64,6 +66,6 @@ export const config = {
   matcher: [
     "/sdc-dashboard/:path*",
     "/meelad-fest/:path*",
-    "/sdc-dashboard/books/book-details:path*",
+    "/sdc-dashboard/books/book-details/:path*",
   ],
 };
