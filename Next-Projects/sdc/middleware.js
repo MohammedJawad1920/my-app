@@ -31,7 +31,10 @@ export async function middleware(request) {
 
     const { payload } = await jwtVerify(
       token,
-      new TextEncoder().encode(process.env.JWT_SECRET_KEY)
+      new TextEncoder().encode(process.env.JWT_SECRET_KEY),
+      {
+        algorithms: ["HS256"], // Specify the algorithm you are using
+      }
     );
 
     const administrator = payload.role === "Administrator";
