@@ -5,6 +5,8 @@ export async function middleware(request) {
   const libraryToken = request.cookies.get("libraryToken");
   const festToken = request.cookies.get("festToken");
 
+  console.log(libraryToken);
+
   const books = request.url.startsWith(
     `${process.env.BASE_URL}/sdc-dashboard/books`
   );
@@ -28,6 +30,12 @@ export async function middleware(request) {
 
   if ((!libraryToken && isSdcDashBoard) || (!festToken && isMeeladFest)) {
     return NextResponse.redirect(new URL("/login", request.url));
+  }
+  if (festToken && isMeeladFest) {
+    return NextResponse.redirect(new URL("/meelad-fest", request.url));
+  }
+  if (libraryToken && isSdcDashBoard) {
+    return NextResponse.redirect(new URL("/meelad-fest", request.url));
   }
 
   const key = new TextEncoder().encode(process.env.JWT_SECRET_KEY);
