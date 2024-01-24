@@ -55,7 +55,7 @@ const UserDetails = ({ data }) => {
   const fetchUserData = async () => {
     try {
       const res = await fetch(`/api/users`, {
-        cache: "no-store",
+        cache: "no-cache",
       });
       const data = await res.json();
       const users = data.users;
