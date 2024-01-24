@@ -3,7 +3,9 @@ import UserDetailsContainer from "@/components/UserDetailsContainer";
 const fetchUserData = async () => {
   try {
     const res = await fetch(`${process.env.BASE_URL}/api/users`, {
-      cache: "no-store",
+      headers: {
+        "Cache-Control": "no-store",
+      },
     });
     const data = await res.json();
     const users = data.users;
