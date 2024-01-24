@@ -11,7 +11,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "@/libs/themeSettings";
 
 import Header from "@/components/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Close } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
@@ -25,18 +25,22 @@ const BookDetails = ({ data }) => {
   const [bookData, setBookData] = useState(data);
 
   const fetchBookData = async () => {
-    const res = await fetch(`/api/books/get`, { cache: "no-store" });
+    const res = await fetch(`/api/books/get`);
     const data = await res.json();
     const books = data.books;
     setBookData(books);
   };
+
+  // useEffect(() => {
+  //   fetchBookData();
+  // }, []);
 
   const router = useRouter(null);
 
   const handleDelete = async (bookId) => {
     try {
       await axios.post("/api/books/delete", { bookId });
-      fetchBookData();
+      // fetchBookData();
       handleCloseDialog();
     } catch (err) {
       console.log("Error:", err.response.data.msg);
@@ -176,25 +180,27 @@ const BookDetails = ({ data }) => {
           }}
         >
           <DataGrid
-            rows={bookData}
+            rows={data}
             columns={columns}
-            getRowId={(row) => row.bookId}
+            getRowId={(row) => row._id}
             onRowClick={handleRowClick}
-            className="hidden lg:flex"
+            hide={["md", "sm", "xs"]}
           />
+          {/* Show only on medium screens */}
           <DataGrid
-            rows={bookData}
+            rows={data}
             columns={mdColumns}
-            getRowId={(row) => row.bookId}
+            getRowId={(row) => row._id}
             onRowClick={handleRowClick}
-            className="hidden md:flex lg:hidden"
+            hide={["lg", "sm", "xs"]}
           />
+          {/* Show only on small screens */}
           <DataGrid
-            rows={bookData}
+            rows={data}
             columns={smColumns}
-            getRowId={(row) => row.bookId}
+            getRowId={(row) => row._id}
             onRowClick={handleRowClick}
-            className=" md:hidden"
+            hide={["lg", "md"]}
           />
         </Box>
       </Box>

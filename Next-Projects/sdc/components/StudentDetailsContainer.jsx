@@ -14,7 +14,7 @@ import { tokens } from "@/libs/themeSettings";
 import { Close } from "@mui/icons-material";
 
 import Header from "@/components/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
@@ -28,11 +28,15 @@ const StudentDetails = ({ data }) => {
   const [studentData, setStudentData] = useState(data);
 
   const fetchStudentData = async () => {
-    const res = await fetch(`/api/students/get`, { cache: "no-store" });
+    const res = await fetch(`/api/students/get`);
     const data = await res.json();
     const students = data.students;
     setStudentData(students);
   };
+
+  useEffect(() => {
+    fetchStudentData();
+  }, []);
 
   const handleDelete = async (studentId) => {
     try {
