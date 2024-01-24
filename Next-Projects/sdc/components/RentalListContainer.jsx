@@ -124,7 +124,7 @@ const rentalList = ({ data }) => {
               rows={data}
               columns={columns}
               getRowId={(row) => row._id}
-              autoHeight
+              style={{ height: "70vh" }}
               onRowClick={handleRowClick}
             />
           </div>
@@ -133,7 +133,7 @@ const rentalList = ({ data }) => {
               rows={data}
               columns={mdColumns}
               getRowId={(row) => row._id}
-              autoHeight
+              style={{ height: "70vh" }}
               onRowClick={handleRowClick}
             />
           </div>
@@ -142,7 +142,7 @@ const rentalList = ({ data }) => {
               rows={data}
               columns={smColumns}
               getRowId={(row) => row._id}
-              autoHeight
+              style={{ height: "70vh" }}
               onRowClick={handleRowClick}
             />
           </div>

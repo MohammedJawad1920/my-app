@@ -24,6 +24,8 @@ const BookDetails = ({ data }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [bookData, setBookData] = useState(data);
 
+  const books = bookData ? bookData : data;
+
   const fetchBookData = async () => {
     const res = await fetch(`/api/books/get`, { cache: "no-store" });
     const data = await res.json();
@@ -31,16 +33,16 @@ const BookDetails = ({ data }) => {
     setBookData(books);
   };
 
-  // useEffect(() => {
-  //   fetchBookData();
-  // }, []);
+  useEffect(() => {
+    fetchBookData();
+  }, []);
 
   const router = useRouter(null);
 
   const handleDelete = async (bookId) => {
     try {
       await axios.post("/api/books/delete", { bookId });
-      // fetchBookData();
+      fetchBookData();
       handleCloseDialog();
     } catch (err) {
       console.log("Error:", err.response.data.msg);
@@ -181,29 +183,29 @@ const BookDetails = ({ data }) => {
         >
           <div className=" min-h-full hidden lg:flex">
             <DataGrid
-              rows={data}
+              rows={books}
               columns={columns}
               getRowId={(row) => row.bookId}
-              autoHeight
+              style={{ height: "70vh" }}
               onRowClick={handleRowClick}
             />
           </div>
 
           <div className=" min-h-full hidden md:flex lg:hidden">
             <DataGrid
-              rows={data}
+              rows={books}
               columns={mdColumns}
               getRowId={(row) => row.bookId}
-              autoHeight
+              style={{ height: "70vh" }}
               onRowClick={handleRowClick}
             />
           </div>
           <div className=" min-h-full  md:hidden">
             <DataGrid
-              rows={data}
+              rows={books}
               columns={smColumns}
               getRowId={(row) => row.bookId}
-              autoHeight
+              style={{ height: "70vh" }}
               onRowClick={handleRowClick}
             />
           </div>

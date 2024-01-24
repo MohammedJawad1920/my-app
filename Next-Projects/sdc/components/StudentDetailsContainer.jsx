@@ -144,7 +144,7 @@ const StudentDetails = ({ data }) => {
               rows={studentData}
               columns={columns}
               getRowId={(row) => row.studentId}
-              autoHeight
+              style={{ height: "70vh" }}
               onRowClick={handleRowClick}
             />
           </div>
@@ -154,7 +154,7 @@ const StudentDetails = ({ data }) => {
               rows={studentData}
               columns={mdColumns}
               getRowId={(row) => row.studentId}
-              autoHeight
+              style={{ height: "70vh" }}
               onRowClick={handleRowClick}
             />
           </div>
@@ -163,7 +163,7 @@ const StudentDetails = ({ data }) => {
               rows={studentData}
               columns={smColumns}
               getRowId={(row) => row.studentId}
-              autoHeight
+              style={{ height: "70vh" }}
               onRowClick={handleRowClick}
             />
           </div>
