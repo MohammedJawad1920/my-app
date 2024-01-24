@@ -1,4 +1,5 @@
 import RentalListContainer from "@/components/RentalListContainer";
+import fetch from "node-fetch";
 export const dynamic = "force-dynamic";
 
 const fetchRentalData = async () => {
