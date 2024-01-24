@@ -1,4 +1,5 @@
 import StudentDetailsContainer from "@/components/StudentDetailsContainer";
+import fetch from "node-fetch";
 
 const fetchStudentData = async () => {
   const res = await fetch(`${process.env.BASE_URL}/api/students/get`, {

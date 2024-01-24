@@ -33,16 +33,16 @@ const BookDetails = ({ data }) => {
     setBookData(books);
   };
 
-  useEffect(() => {
-    fetchBookData();
-  }, []);
+  // useEffect(() => {
+  //   fetchBookData();
+  // }, []);
 
   const router = useRouter(null);
 
   const handleDelete = async (bookId) => {
     try {
       await axios.post("/api/books/delete", { bookId });
-      fetchBookData();
+      // fetchBookData();
       handleCloseDialog();
     } catch (err) {
       console.log("Error:", err.response.data.msg);
@@ -183,7 +183,7 @@ const BookDetails = ({ data }) => {
         >
           <div className=" min-h-full hidden lg:flex">
             <DataGrid
-              rows={books}
+              rows={data}
               columns={columns}
               getRowId={(row) => row.bookId}
               style={{ height: "70vh" }}
@@ -193,7 +193,7 @@ const BookDetails = ({ data }) => {
 
           <div className=" min-h-full hidden md:flex lg:hidden">
             <DataGrid
-              rows={books}
+              rows={data}
               columns={mdColumns}
               getRowId={(row) => row.bookId}
               style={{ height: "70vh" }}
@@ -202,7 +202,7 @@ const BookDetails = ({ data }) => {
           </div>
           <div className=" min-h-full  md:hidden">
             <DataGrid
-              rows={books}
+              rows={data}
               columns={smColumns}
               getRowId={(row) => row.bookId}
               style={{ height: "70vh" }}

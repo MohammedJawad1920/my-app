@@ -1,4 +1,5 @@
 import BookDetailsContainer from "@/components/BookDetailsContainer";
+import fetch from "node-fetch";
 
 const BookDetails = async () => {
   const fetchBookData = async () => {

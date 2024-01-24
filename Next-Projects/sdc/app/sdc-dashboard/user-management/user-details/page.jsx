@@ -1,4 +1,5 @@
 import UserDetailsContainer from "@/components/UserDetailsContainer";
+import fetch from "node-fetch";
 
 const fetchUserData = async () => {
   try {
