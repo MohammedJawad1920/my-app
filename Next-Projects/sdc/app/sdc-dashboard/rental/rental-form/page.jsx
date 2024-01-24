@@ -152,7 +152,7 @@ const RentalForm = () => {
         p="20px"
       >
         <Header
-          title="rental"
+          title="RENTAL"
           subtitle="Check the availability of books"
         />
         {message && (

@@ -1,4 +1,5 @@
 import DashboardContainer from "@/components/DashboardContainer";
+import fetch from "node-fetch";
 
 const fetchData = async () => {
   try {
