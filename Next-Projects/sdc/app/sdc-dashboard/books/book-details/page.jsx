@@ -4,7 +4,7 @@ import fetch from "node-fetch";
 const BookDetails = async () => {
   const fetchBookData = async () => {
     const res = await fetch(`${process.env.BASE_URL}/api/books/get`, {
-      cache: "no-store",
+      cache: "no-cache",
     });
     const data = await res.json();
     const books = await data.books;

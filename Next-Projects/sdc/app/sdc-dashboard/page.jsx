@@ -5,13 +5,13 @@ const fetchData = async () => {
   try {
     const requests = await Promise.all([
       fetch(`${process.env.BASE_URL}/api/books/get`, {
-        cache: "no-store",
+        cache: "no-cache",
       }),
       fetch(`${process.env.BASE_URL}/api/students/get`, {
-        cache: "no-store",
+        cache: "no-cache",
       }),
       fetch(`${process.env.BASE_URL}/api/rental/get`, {
-        cache: "no-store",
+        cache: "no-cache",
       }),
     ]);
 

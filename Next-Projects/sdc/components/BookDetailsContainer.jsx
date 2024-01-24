@@ -27,7 +27,7 @@ const BookDetails = ({ data }) => {
   const books = bookData ? bookData : data;
 
   const fetchBookData = async () => {
-    const res = await fetch(`/api/books/get`, { cache: "no-store" });
+    const res = await fetch(`/api/books/get`, { cache: "no-cache" });
     const data = await res.json();
     const books = data.books;
     setBookData(books);
