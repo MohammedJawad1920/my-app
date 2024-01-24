@@ -3,7 +3,7 @@ export const dynamic = "force-dynamic";
 
 const fetchRentalData = async () => {
   const res = await fetch(`${process.env.BASE_URL}/api/rental/get`, {
-    cache: "no-cache",
+    cache: "no-store",
   });
   const data = await res.json();
   const rentals = data.rentals;

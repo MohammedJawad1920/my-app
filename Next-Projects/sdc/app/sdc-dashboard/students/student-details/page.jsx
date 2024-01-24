@@ -3,7 +3,7 @@ export const dynamic = "force-dynamic";
 
 const fetchStudentData = async () => {
   const res = await fetch(`${process.env.BASE_URL}/api/students/get`, {
-    cache: "no-cache",
+    cache: "no-store",
   });
   const data = await res.json();
   const students = data.students;
