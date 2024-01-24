@@ -69,7 +69,7 @@ const UserDetails = ({ data }) => {
     const token = Cookies.get("sdcToken");
     try {
       await axios.post("/api/users", { _id, token });
-      // fetchUserData();
+      fetchUserData();
       handleCloseDialog();
     } catch (err) {
       console.log("Error:", err.response.data.msg);
