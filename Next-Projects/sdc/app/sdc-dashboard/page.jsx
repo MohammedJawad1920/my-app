@@ -1,17 +1,16 @@
 import DashboardContainer from "@/components/DashboardContainer";
-import fetch from "node-fetch";
 
 const fetchData = async () => {
   try {
     const requests = await Promise.all([
       fetch(`${process.env.BASE_URL}/api/books/get`, {
-        next: { revalidate: 5 },
+        cache: "no-store",
       }),
       fetch(`${process.env.BASE_URL}/api/students/get`, {
-        next: { revalidate: 5 },
+        cache: "no-store",
       }),
       fetch(`${process.env.BASE_URL}/api/rental/get`, {
-        next: { revalidate: 5 },
+        cache: "no-store",
       }),
     ]);
 

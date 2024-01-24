@@ -25,7 +25,7 @@ const BookDetails = ({ data }) => {
   const [bookData, setBookData] = useState(data);
 
   const fetchBookData = async () => {
-    const res = await fetch(`/api/books/get`);
+    const res = await fetch(`/api/books/get`, { cache: "no-store" });
     const data = await res.json();
     const books = data.books;
     setBookData(books);
@@ -181,7 +181,7 @@ const BookDetails = ({ data }) => {
         >
           <div className=" min-h-full hidden lg:flex">
             <DataGrid
-              rows={bookData}
+              rows={data}
               columns={columns}
               getRowId={(row) => row.bookId}
               autoHeight
@@ -191,7 +191,7 @@ const BookDetails = ({ data }) => {
 
           <div className=" min-h-full hidden md:flex lg:hidden">
             <DataGrid
-              rows={bookData}
+              rows={data}
               columns={mdColumns}
               getRowId={(row) => row.bookId}
               autoHeight
@@ -200,7 +200,7 @@ const BookDetails = ({ data }) => {
           </div>
           <div className=" min-h-full  md:hidden">
             <DataGrid
-              rows={bookData}
+              rows={data}
               columns={smColumns}
               getRowId={(row) => row.bookId}
               autoHeight

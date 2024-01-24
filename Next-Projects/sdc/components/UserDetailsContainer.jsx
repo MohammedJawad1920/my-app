@@ -55,7 +55,7 @@ const UserDetails = ({ data }) => {
   const fetchUserData = async () => {
     try {
       const res = await fetch(`/api/users`, {
-        next: { revalidate: 5 },
+        cache: "no-store",
       });
       const data = await res.json();
       const users = data.users;
@@ -69,7 +69,7 @@ const UserDetails = ({ data }) => {
     const token = Cookies.get("sdcToken");
     try {
       await axios.post("/api/users", { _id, token });
-      fetchUserData();
+      // fetchUserData();
       handleCloseDialog();
     } catch (err) {
       console.log("Error:", err.response.data.msg);

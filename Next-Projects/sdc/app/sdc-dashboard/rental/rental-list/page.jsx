@@ -1,9 +1,8 @@
 import RentalListContainer from "@/components/RentalListContainer";
-import fetch from "node-fetch";
 
 const fetchRentalData = async () => {
   const res = await fetch(`${process.env.BASE_URL}/api/rental/get`, {
-    next: { revalidate: 5 },
+    cache: "no-store",
   });
   const data = await res.json();
   const rentals = await data.rentals;

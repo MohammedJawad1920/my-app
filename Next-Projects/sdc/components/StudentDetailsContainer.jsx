@@ -34,14 +34,14 @@ const StudentDetails = ({ data }) => {
     setStudentData(students);
   };
 
-  useEffect(() => {
-    fetchStudentData();
-  }, []);
+  // useEffect(() => {
+  //   fetchStudentData();
+  // }, []);
 
   const handleDelete = async (studentId) => {
     try {
       await axios.post("/api/students/delete", { studentId });
-      fetchStudentData();
+      // fetchStudentData();
       handleCloseDialog();
     } catch (err) {
       console.log("Error:", err?.response?.data?.msg);
