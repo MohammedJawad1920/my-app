@@ -1,5 +1,5 @@
 import BookDetailsContainer from "@/components/BookDetailsContainer";
-import fetch from "node-fetch";
+export const dynamic = "force-dynamic";
 
 const BookDetails = async () => {
   const fetchBookData = async () => {

@@ -1,5 +1,5 @@
 import StudentDetailsContainer from "@/components/StudentDetailsContainer";
-import fetch from "node-fetch";
+export const dynamic = "force-dynamic";
 
 const fetchStudentData = async () => {
   const res = await fetch(`${process.env.BASE_URL}/api/students/get`, {

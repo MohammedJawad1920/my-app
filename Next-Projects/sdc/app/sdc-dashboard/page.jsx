@@ -1,5 +1,5 @@
 import DashboardContainer from "@/components/DashboardContainer";
-import fetch from "node-fetch";
+export const dynamic = "force-dynamic";
 
 const fetchData = async () => {
   try {

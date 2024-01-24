@@ -1,5 +1,5 @@
 import RentalListContainer from "@/components/RentalListContainer";
-import fetch from "node-fetch";
+export const dynamic = "force-dynamic";
 
 const fetchRentalData = async () => {
   const res = await fetch(`${process.env.BASE_URL}/api/rental/get`, {
