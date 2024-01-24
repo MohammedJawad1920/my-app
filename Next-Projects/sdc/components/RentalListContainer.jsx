@@ -119,27 +119,33 @@ const rentalList = ({ data }) => {
             },
           }}
         >
-          <DataGrid
-            rows={data}
-            columns={columns}
-            getRowId={(row) => row._id}
-            onRowClick={handleRowClick}
-            className="hidden lg:flex"
-          />
-          <DataGrid
-            rows={data}
-            columns={mdColumns}
-            getRowId={(row) => row._id}
-            onRowClick={handleRowClick}
-            className="hidden md:flex lg:hidden"
-          />
-          <DataGrid
-            rows={data}
-            columns={smColumns}
-            getRowId={(row) => row._id}
-            onRowClick={handleRowClick}
-            className=" md:hidden"
-          />
+          <div className="hidden lg:flex">
+            <DataGrid
+              rows={data}
+              columns={columns}
+              getRowId={(row) => row._id}
+              autoHeight
+              onRowClick={handleRowClick}
+            />
+          </div>
+          <div className="hidden md:flex lg:hidden">
+            <DataGrid
+              rows={data}
+              columns={mdColumns}
+              getRowId={(row) => row._id}
+              autoHeight
+              onRowClick={handleRowClick}
+            />
+          </div>
+          <div className=" md:hidden">
+            <DataGrid
+              rows={data}
+              columns={smColumns}
+              getRowId={(row) => row._id}
+              autoHeight
+              onRowClick={handleRowClick}
+            />
+          </div>
         </Box>
       </Box>
       <Dialog

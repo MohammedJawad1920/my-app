@@ -179,29 +179,34 @@ const BookDetails = ({ data }) => {
             },
           }}
         >
-          <DataGrid
-            rows={data}
-            columns={columns}
-            getRowId={(row) => row._id}
-            onRowClick={handleRowClick}
-            hide={["md", "sm", "xs"]}
-          />
-          {/* Show only on medium screens */}
-          <DataGrid
-            rows={data}
-            columns={mdColumns}
-            getRowId={(row) => row._id}
-            onRowClick={handleRowClick}
-            hide={["lg", "sm", "xs"]}
-          />
-          {/* Show only on small screens */}
-          <DataGrid
-            rows={data}
-            columns={smColumns}
-            getRowId={(row) => row._id}
-            onRowClick={handleRowClick}
-            hide={["lg", "md"]}
-          />
+          <div className=" min-h-full hidden lg:flex">
+            <DataGrid
+              rows={bookData}
+              columns={columns}
+              getRowId={(row) => row.bookId}
+              autoHeight
+              onRowClick={handleRowClick}
+            />
+          </div>
+
+          <div className=" min-h-full hidden md:flex lg:hidden">
+            <DataGrid
+              rows={bookData}
+              columns={mdColumns}
+              getRowId={(row) => row.bookId}
+              autoHeight
+              onRowClick={handleRowClick}
+            />
+          </div>
+          <div className=" min-h-full  md:hidden">
+            <DataGrid
+              rows={bookData}
+              columns={smColumns}
+              getRowId={(row) => row.bookId}
+              autoHeight
+              onRowClick={handleRowClick}
+            />
+          </div>
         </Box>
       </Box>
       <Dialog

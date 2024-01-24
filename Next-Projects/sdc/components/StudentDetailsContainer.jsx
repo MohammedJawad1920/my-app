@@ -139,27 +139,34 @@ const StudentDetails = ({ data }) => {
             },
           }}
         >
-          <DataGrid
-            rows={studentData}
-            columns={columns}
-            getRowId={(row) => row.studentId}
-            onRowClick={handleRowClick}
-            className="hidden lg:flex"
-          />
-          <DataGrid
-            rows={studentData}
-            columns={mdColumns}
-            getRowId={(row) => row.studentId}
-            onRowClick={handleRowClick}
-            className="hidden md:flex lg:hidden"
-          />
-          <DataGrid
-            rows={studentData}
-            columns={smColumns}
-            getRowId={(row) => row.studentId}
-            onRowClick={handleRowClick}
-            className="md:hidden"
-          />
+          <div className=" min-h-full hidden lg:flex">
+            <DataGrid
+              rows={studentData}
+              columns={columns}
+              getRowId={(row) => row.studentId}
+              autoHeight
+              onRowClick={handleRowClick}
+            />
+          </div>
+
+          <div className=" min-h-full hidden md:flex lg:hidden">
+            <DataGrid
+              rows={studentData}
+              columns={mdColumns}
+              getRowId={(row) => row.studentId}
+              autoHeight
+              onRowClick={handleRowClick}
+            />
+          </div>
+          <div className=" min-h-full  md:hidden">
+            <DataGrid
+              rows={studentData}
+              columns={smColumns}
+              getRowId={(row) => row.studentId}
+              autoHeight
+              onRowClick={handleRowClick}
+            />
+          </div>
         </Box>
       </Box>
       <Dialog
