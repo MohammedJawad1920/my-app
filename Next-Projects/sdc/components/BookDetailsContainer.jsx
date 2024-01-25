@@ -43,7 +43,7 @@ const BookDetails = ({ data }) => {
   const handleDelete = async (bookId) => {
     try {
       await axios.post("/api/books/delete", { bookId });
-      // fetchBookData();
+      fetchBookData();
       handleCloseDialog();
     } catch (err) {
       console.log("Error:", err.response.data.msg);
