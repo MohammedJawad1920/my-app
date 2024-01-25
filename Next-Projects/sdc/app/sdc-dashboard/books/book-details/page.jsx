@@ -5,9 +5,9 @@ export const dynamic = "force-dynamic";
 
 const fetchBookData = async () => {
   const res = await axios.get(`${process.env.BASE_URL}/api/books/get`);
-  const data = await res.json();
-  const books = await data.books;
+  const books = await res.data.books;
   return books;
+  console.log(books);
 };
 const BookDetails = async () => {
   const data = await fetchBookData();
