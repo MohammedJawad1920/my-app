@@ -21,6 +21,4 @@ const UserDetails = async () => {
   return <UserDetailsContainer data={filteredUsers} />;
 };
 
-export const dynamic = "force-dynamic";
-
 export default UserDetails;

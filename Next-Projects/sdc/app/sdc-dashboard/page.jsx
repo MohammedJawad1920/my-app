@@ -1,7 +1,5 @@
 import DashboardContainer from "@/components/DashboardContainer";
 
-export const dynamic = "force-dynamic";
-
 const fetchData = async () => {
   try {
     const requests = await Promise.all([

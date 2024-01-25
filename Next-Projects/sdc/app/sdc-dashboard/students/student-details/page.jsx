@@ -12,6 +12,5 @@ const StudentDetails = async () => {
   const data = await fetchStudentData();
   return <StudentDetailsContainer data={data} />;
 };
-export const dynamic = "force-dynamic";
 
 export default StudentDetails;

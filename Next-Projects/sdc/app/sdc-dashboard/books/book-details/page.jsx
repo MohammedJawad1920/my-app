@@ -16,5 +16,4 @@ const BookDetails = async () => {
   return <BookDetailsContainer data={data} />;
 };
 
-export const dynamic = "force-dynamic";
 export default BookDetails;

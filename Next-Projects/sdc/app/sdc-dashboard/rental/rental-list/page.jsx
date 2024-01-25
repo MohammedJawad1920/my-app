@@ -13,5 +13,4 @@ const rentalList = async () => {
   return <RentalListContainer data={data} />;
 };
 
-export const dynamic = "force-dynamic";
 export default rentalList;

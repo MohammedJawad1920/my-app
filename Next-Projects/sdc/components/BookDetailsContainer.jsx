@@ -22,28 +22,27 @@ const BookDetails = ({ data }) => {
 
   const [selectedRow, setSelectedRow] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
-  const [bookData, setBookData] = useState([]);
 
-  const fetchBookData = async () => {
-    const res = await fetch(`/api/books/get`);
-    const data = await res.json();
-    const books = data.books;
-    setBookData(books);
-  };
+  // const fetchBookData = async () => {
+  //   const res = await fetch(`/api/books/get`);
+  //   const data = await res.json();
+  //   const books = data.books;
+  //   setBookData(books);
+  // };
 
-  console.log(bookData);
+  // console.log(bookData);
 
-  useEffect(() => {
-    fetchBookData();
-  }, []);
+  // useEffect(() => {
+  //   fetchBookData();
+  // }, []);
 
-  const books = bookData.length !== 0 ? bookData : data;
+  // const books = bookData.length !== 0 ? bookData : data;
   const router = useRouter(null);
 
   const handleDelete = async (bookId) => {
     try {
       await axios.post("/api/books/delete", { bookId });
-      fetchBookData();
+      // fetchBookData();
       handleCloseDialog();
     } catch (err) {
       console.log("Error:", err.response.data.msg);
@@ -184,7 +183,7 @@ const BookDetails = ({ data }) => {
         >
           <div className=" min-h-full hidden lg:flex">
             <DataGrid
-              rows={books}
+              rows={data}
               columns={columns}
               getRowId={(row) => row.bookId}
               style={{ height: "70vh" }}
@@ -194,7 +193,7 @@ const BookDetails = ({ data }) => {
 
           <div className=" min-h-full hidden md:flex lg:hidden">
             <DataGrid
-              rows={books}
+              rows={data}
               columns={mdColumns}
               getRowId={(row) => row.bookId}
               style={{ height: "70vh" }}
@@ -203,7 +202,7 @@ const BookDetails = ({ data }) => {
           </div>
           <div className=" min-h-full  md:hidden">
             <DataGrid
-              rows={books}
+              rows={data}
               columns={smColumns}
               getRowId={(row) => row.bookId}
               style={{ height: "70vh" }}
