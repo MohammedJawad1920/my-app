@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 const BookDetails = ({ data }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  console.log(data);
 
   const [selectedRow, setSelectedRow] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
