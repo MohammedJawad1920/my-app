@@ -7,7 +7,12 @@ connectToDB();
 export async function GET() {
   try {
     const books = await Book.find({});
-    return NextResponse.json({ succes: true, books }, { status: 201 });
+    const response = NextResponse.json(
+      { succes: true, books },
+      { status: 201 }
+    );
+    response.headers.set("Cache-Control", "no-cache");
+    return response;
   } catch (err) {
     return NextResponse.json(
       { success: false, msg: "Server Error" },

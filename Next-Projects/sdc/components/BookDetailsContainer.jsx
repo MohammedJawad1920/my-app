@@ -22,7 +22,7 @@ const BookDetails = ({ data }) => {
 
   const [selectedRow, setSelectedRow] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
-  const [bookData, setBookData] = useState(data);
+  const [bookData, setBookData] = useState([]);
 
   const fetchBookData = async () => {
     const res = await fetch(`/api/books/get`);
