@@ -1,14 +1,30 @@
 import { connectToDB } from "@/libs/connectToDB";
 import Book from "@/models/Book";
-import { revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 
 connectToDB();
 
-export async function GET() {
+export async function GET(request) {
   try {
-    const books = await Book.find({});
+    const secret = request.nextUrl.searchParams.get("secret");
+    const tag = request.nextUrl.searchParams.get("tag");
 
+    console.log(secret);
+
+    if (secret !== process.env.SECRET_KEY) {
+      return NextResponse.json({ message: "Invalid secret" }, { status: 401 });
+    }
+
+    if (!tag) {
+      return NextResponse.json(
+        { message: "Missing tag param" },
+        { status: 400 }
+      );
+    }
+
+    revalidateTag(tag);
+    const books = await Book.find({});
     return NextResponse.json({ succes: true, books }, { status: 201 });
   } catch (err) {
     return NextResponse.json(

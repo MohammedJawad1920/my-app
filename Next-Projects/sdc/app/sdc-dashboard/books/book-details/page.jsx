@@ -1,9 +1,12 @@
 import BookDetailsContainer from "@/components/BookDetailsContainer";
 
 const fetchBookData = async () => {
-  const res = await fetch(`${process.env.BASE_URL}/api/books/get`, {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `${process.env.BASE_URL}/api/books/get?token=collection&secret=${process.env.SECRET_KEY}`,
+    {
+      next: { tags: ["collection"] },
+    }
+  );
   const data = await res.json();
   const books = await data.books;
   return books;
