@@ -3,9 +3,7 @@ import BookDetailsContainer from "@/components/BookDetailsContainer";
 const BookDetails = async () => {
   const fetchBookData = async () => {
     const res = await fetch(`${process.env.BASE_URL}/api/books/get`, {
-      headers: {
-        "Cache-Control": "no-store",
-      },
+      cache: "no-store",
     });
     const data = await res.json();
     const books = await data.books;
@@ -16,6 +14,5 @@ const BookDetails = async () => {
   return <BookDetailsContainer data={data} />;
 };
 
-export default BookDetails;
 export const dynamic = "force-dynamic";
-export const revalidate = 5;
+export default BookDetails;

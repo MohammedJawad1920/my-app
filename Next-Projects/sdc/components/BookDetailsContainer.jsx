@@ -33,9 +33,9 @@ const BookDetails = ({ data }) => {
     setBookData(books);
   };
 
-  // useEffect(() => {
-  //   fetchBookData();
-  // }, []);
+  useEffect(() => {
+    fetchBookData();
+  }, []);
 
   const router = useRouter(null);
 
@@ -183,7 +183,7 @@ const BookDetails = ({ data }) => {
         >
           <div className=" min-h-full hidden lg:flex">
             <DataGrid
-              rows={data}
+              rows={books}
               columns={columns}
               getRowId={(row) => row.bookId}
               style={{ height: "70vh" }}
@@ -193,7 +193,7 @@ const BookDetails = ({ data }) => {
 
           <div className=" min-h-full hidden md:flex lg:hidden">
             <DataGrid
-              rows={data}
+              rows={books}
               columns={mdColumns}
               getRowId={(row) => row.bookId}
               style={{ height: "70vh" }}
@@ -202,7 +202,7 @@ const BookDetails = ({ data }) => {
           </div>
           <div className=" min-h-full  md:hidden">
             <DataGrid
-              rows={data}
+              rows={books}
               columns={smColumns}
               getRowId={(row) => row.bookId}
               style={{ height: "70vh" }}

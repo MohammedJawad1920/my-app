@@ -3,9 +3,7 @@ import UserDetailsContainer from "@/components/UserDetailsContainer";
 const fetchUserData = async () => {
   try {
     const res = await fetch(`${process.env.BASE_URL}/api/users`, {
-      headers: {
-        "Cache-Control": "no-store",
-      },
+      cache: "no-store",
     });
     const data = await res.json();
     const users = data.users;
@@ -22,5 +20,7 @@ const UserDetails = async () => {
 
   return <UserDetailsContainer data={filteredUsers} />;
 };
+
+export const dynamic = "force-dynamic";
 
 export default UserDetails;

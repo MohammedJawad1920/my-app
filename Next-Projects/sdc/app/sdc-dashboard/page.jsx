@@ -1,25 +1,18 @@
 import DashboardContainer from "@/components/DashboardContainer";
 
 export const dynamic = "force-dynamic";
-export const revalidate = 5;
 
 const fetchData = async () => {
   try {
     const requests = await Promise.all([
       fetch(`${process.env.BASE_URL}/api/books/get`, {
-        headers: {
-          "Cache-Control": "no-store",
-        },
+        cache: "no-store",
       }),
       fetch(`${process.env.BASE_URL}/api/students/get`, {
-        headers: {
-          "Cache-Control": "no-store",
-        },
+        cache: "no-store",
       }),
       fetch(`${process.env.BASE_URL}/api/rental/get`, {
-        headers: {
-          "Cache-Control": "no-store",
-        },
+        cache: "no-store",
       }),
     ]);
 

@@ -1,13 +1,8 @@
 import RentalListContainer from "@/components/RentalListContainer";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 5;
-
 const fetchRentalData = async () => {
   const res = await fetch(`${process.env.BASE_URL}/api/rental/get`, {
-    headers: {
-      "Cache-Control": "no-store",
-    },
+    cache: "no-store",
   });
   const data = await res.json();
   const rentals = data.rentals;
@@ -18,4 +13,5 @@ const rentalList = async () => {
   return <RentalListContainer data={data} />;
 };
 
+export const dynamic = "force-dynamic";
 export default rentalList;
