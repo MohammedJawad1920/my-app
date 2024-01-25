@@ -11,7 +11,7 @@ export async function GET() {
       { succes: true, books },
       { status: 201 }
     );
-    response.headers.set("Cache-Control", "no-cache");
+    response.headers.set("Cache-Control", "no-store");
     return response;
   } catch (err) {
     return NextResponse.json(
