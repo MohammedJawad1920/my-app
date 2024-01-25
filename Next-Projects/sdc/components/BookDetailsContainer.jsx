@@ -27,7 +27,7 @@ const BookDetails = ({ data }) => {
   const fetchBookData = async () => {
     const res = await fetch(`/api/books/get`);
     const data = await res.json();
-    const books = data.books[0];
+    const books = data.books;
     setBookData(books);
   };
 
@@ -37,7 +37,7 @@ const BookDetails = ({ data }) => {
     fetchBookData();
   }, []);
 
-  const books = bookData.length ? bookData : data;
+  const books = bookData.length !== 0 ? bookData : data;
   const router = useRouter(null);
 
   const handleDelete = async (bookId) => {
