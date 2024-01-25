@@ -1,8 +1,8 @@
 import BookDetailsContainer from "@/components/BookDetailsContainer";
-import { unstable_noStore } from "next/cache";
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
 
 const fetchBookData = async () => {
-  unstable_noStore();
   const res = await fetch(`${process.env.BASE_URL}/api/books/get`);
   const data = await res.json();
   const books = await data.books;
