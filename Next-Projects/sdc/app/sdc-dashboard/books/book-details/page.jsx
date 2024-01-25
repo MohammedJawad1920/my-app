@@ -1,6 +1,8 @@
 import BookDetailsContainer from "@/components/BookDetailsContainer";
+import { unstable_noStore } from "next/cache";
 
 const fetchBookData = async () => {
+  unstable_noStore();
   const res = await fetch(`${process.env.BASE_URL}/api/books/get`);
   const data = await res.json();
   const books = await data.books;
@@ -13,4 +15,3 @@ const BookDetails = async () => {
 };
 
 export default BookDetails;
-export const revalidate = 1;
