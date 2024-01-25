@@ -5,25 +5,25 @@ import { revalidateTag } from "next/cache";
 
 connectToDB();
 
-export async function GET(request) {
+export async function GET() {
   try {
-    const secret = request.nextUrl.searchParams.get("secret");
-    const tag = request.nextUrl.searchParams.get("tag");
+    // const secret = request.nextUrl.searchParams.get("secret");
+    // const tag = request.nextUrl.searchParams.get("tag");
 
-    console.log(secret);
+    // console.log(secret);
 
-    if (secret !== process.env.SECRET_KEY) {
-      return NextResponse.json({ message: "Invalid secret" }, { status: 401 });
-    }
+    // if (secret !== process.env.SECRET_KEY) {
+    //   return NextResponse.json({ message: "Invalid secret" }, { status: 401 });
+    // }
 
-    if (!tag) {
-      return NextResponse.json(
-        { message: "Missing tag param" },
-        { status: 400 }
-      );
-    }
+    // if (!tag) {
+    //   return NextResponse.json(
+    //     { message: "Missing tag param" },
+    //     { status: 400 }
+    //   );
+    // }
 
-    revalidateTag(tag);
+    revalidateTag("collection");
     const books = await Book.find({});
     return NextResponse.json({ succes: true, books }, { status: 201 });
   } catch (err) {
