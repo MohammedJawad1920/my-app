@@ -24,8 +24,6 @@ const BookDetails = ({ data }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [bookData, setBookData] = useState(data);
 
-  const books = bookData ? bookData : data;
-
   const fetchBookData = async () => {
     const res = await fetch(`/api/books/get`, { cache: "no-store" });
     const data = await res.json();
@@ -37,6 +35,7 @@ const BookDetails = ({ data }) => {
     fetchBookData();
   }, []);
 
+  const books = bookData.length ? bookData : data;
   const router = useRouter(null);
 
   const handleDelete = async (bookId) => {
