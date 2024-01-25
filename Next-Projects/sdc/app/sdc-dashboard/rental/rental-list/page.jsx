@@ -14,3 +14,4 @@ const rentalList = async () => {
 };
 
 export default rentalList;
+export const dynamic = "force-dynamic";
