@@ -23,20 +23,6 @@ const BookDetails = ({ data }) => {
   const [selectedRow, setSelectedRow] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
 
-  // const fetchBookData = async () => {
-  //   const res = await fetch(`/api/books/get`);
-  //   const data = await res.json();
-  //   const books = data.books;
-  //   setBookData(books);
-  // };
-
-  // console.log(bookData);
-
-  // useEffect(() => {
-  //   fetchBookData();
-  // }, []);
-
-  // const books = bookData.length !== 0 ? bookData : data;
   const router = useRouter(null);
 
   const handleDelete = async (bookId) => {
