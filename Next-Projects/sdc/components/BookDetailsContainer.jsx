@@ -27,9 +27,11 @@ const BookDetails = ({ data }) => {
   const fetchBookData = async () => {
     const res = await fetch(`/api/books/get`);
     const data = await res.json();
-    const books = data.books;
+    const books = data.books[0];
     setBookData(books);
   };
+
+  console.log(bookData);
 
   useEffect(() => {
     fetchBookData();
